@@ -1,40 +1,25 @@
 ---
 title: Hello World
 categories: 
-- web前端
+- 测试
 ---
-Welcome to [Octavia](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+### 吉良吉影の自己紹介
 
-### Create a new post
+ ![boki](http://pic.17qq.com/img_biaoqing/85329373.jpeg)
 
-``` bash
-$ hexo new "My New Post"
-```
+私の名は吉良吉影、年齢33歳<br>
+自宅は杜王町北東部の別荘地帯にあり<br>
+結婚はしていない<br>
+仕事は亀ユーチェーン店の会社員で<br>
+毎日遅くとも夜8時までには帰宅する<br>
+タバコは吸わない、酒はたしなむ程度<br>
+夜11時には床につき、必ず8時間は睡眠をとるようにしている<br>
+寝る前に温かいミルクを飲み<br>
+20分ほどのストレッチで体をほぐしてから<br>
+床につくと、ほどんと朝まで熟睡さ<br>
+赤ん坊のように疲労やストレスを残さずに<br>
+朝目を覚ませるんだ<br>
+健康診断でも異常なしと言われたよ<br>
 
-More info: [Writing](https://hexo.io/docs/writing.html)
 
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
