@@ -104,7 +104,7 @@ body.mu .icon-logo {color:#333;}
 .set .category-list-item .category-list-count,.set .category-list-item .tag-list-count,.set .tag-list-item .category-list-count,.set .tag-list-item .tag-list-count {color:#9E9E9E;font-style:normal}
 .set .category-list-item .category-list-count::before,.set .category-list-item .tag-list-count::before,.set .tag-list-item .category-list-count::before,.set .tag-list-item .tag-list-count::before {content:"["}
 .set .category-list-item .category-list-count::after,.set .category-list-item .tag-list-count::after,.set .tag-list-item .category-list-count::after,.set .tag-list-item .tag-list-count::after {content:"]"}
-.set .category-list-item {width:30%;margin:5px 0}@media screen and (max-width:768px) {.set .category-list-item {width:100%}}
+.set .category-list-item {margin:5px 0}@media screen and (max-width:768px) {.set .category-list-item {width:100%}}
 .set .tag-list-item {margin:10px 20px}
 .set .search .search-input {width: 100%;height: 42px;background: transparent;border: 0px;border-bottom:2px solid #6558BC;font-size:20px;padding-top: 20px;}
 .set .search .search-input[type=text]:focus{outline: none;border: 0px;border-bottom:2px solid #6558BC;}
