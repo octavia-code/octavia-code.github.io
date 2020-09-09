@@ -100,7 +100,7 @@ body.mu .icon-logo {color:#333;}
 .set a {display:inline-block;position:relative;color:#424242;padding:5px 5px;}
 .set a::before {content:"";position:absolute;width:0;right:0;bottom:0;height:2px;background:#2196F3}
 .set a:hover {color:#2196F3!important}
-.set .category-list-item,.set .tag-list-item {display:inline-block;font-size:17px;text-align:left}
+.set .category-list-item,.set .tag-list-item {display:block;font-size:17px;text-align:left}
 .set .category-list-item .category-list-count,.set .category-list-item .tag-list-count,.set .tag-list-item .category-list-count,.set .tag-list-item .tag-list-count {color:#9E9E9E;font-style:normal}
 .set .category-list-item .category-list-count::before,.set .category-list-item .tag-list-count::before,.set .tag-list-item .category-list-count::before,.set .tag-list-item .tag-list-count::before {content:"["}
 .set .category-list-item .category-list-count::after,.set .category-list-item .tag-list-count::after,.set .tag-list-item .category-list-count::after,.set .tag-list-item .tag-list-count::after {content:"]"}
@@ -205,7 +205,6 @@ h1.title {font-size:30px;color:#333;line-height:1.3;position:relative;font-weigh
 .content h4 {font-size:19px}
 .content h5 {font-size:15px}
 .content h6 {font-size:13px}
-.content strong {font-weight:500;}
 .content a {background:transparent;color:#1980e6;text-decoration:none;}
 .content a:hover {color:#518dca;}
 .content hr {margin-top:21px;margin-bottom:21px;border:0;border-top:1px solid rgba(102,128,153,0.1)}
