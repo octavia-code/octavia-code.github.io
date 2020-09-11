@@ -4,6 +4,7 @@ date: 2020-09-04 15:14:47
 categories:
 - Octavia之技术文档
 - 数据库
+tags: sql
 cover: /img/welcome-green.jpg
 mp3: https://link.hhtjim.com/xiami/1812450377.mp3
 ---
