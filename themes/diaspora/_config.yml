@@ -14,7 +14,6 @@ autoplay: false
 
 # 默认音乐（随机播放）
 mp3:
-    - https://link.hhtjim.com/xiami/1812450377.mp3
     - https://link.hhtjim.com/163/2057633871.mp3
     - https://link.hhtjim.com/163/2057633868.mp3
     - https://link.hhtjim.com/163/2057633871.mp3
