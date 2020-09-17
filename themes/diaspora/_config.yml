@@ -7,7 +7,7 @@ menu:
   关于: /about
 
 # 是否显示目录
-TOC: false
+TOC: true
 
 # 是否自动播放音乐
 autoplay: false
@@ -17,6 +17,7 @@ mp3:
     - http://www.0dutv.com/plug/down/up2.php/621323.mp3
     - https://link.hhtjim.com/163/31445554.mp3
     - https://link.hhtjim.com/163/33920425.mp3
+    - https://www.0dutv.com/upload/dance/20200316/C719452E3C7834080007662021EA968E.mp3
 
 
 
