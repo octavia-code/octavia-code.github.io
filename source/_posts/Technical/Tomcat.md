@@ -19,18 +19,18 @@ tags:
 ## Tomcat初步使用
 以在Idea中使用Tomcat为例
 第一步：新建一个web项目
-![1](/world/img/Tomcat/1.png)
+![1](/img/Tomcat/1.png)
 第二步：配置Tomcat 地址选择本地存放目录
-![2](/world/img/Tomcat/2.png)
+![2](/img/Tomcat/2.png)
 第三步：为项目命名
-![3](/world/img/Tomcat/3.png)
+![3](/img/Tomcat/3.png)
 项目加载完毕后会自动生成一个index.jsp范例，运行Tomcat
-![4](/world/img/Tomcat/4.png)
+![4](/img/Tomcat/4.png)
 正常情况下应该运行成功，浏览器跳转 http://localhost:8080/tomcatDemo_war_exploded/ 正常显示页面.
 
 ### 解决控制台输出乱码问题
 首先打开vm option
-![5](/world/img/Tomcat/5.png)
+![5](/img/Tomcat/5.png)
 在末尾添加
 `-Dfile.encoding=UTF-8`
 同时要确保settings=>File Encoding中字符编码格式为UTF-8
@@ -38,7 +38,7 @@ tags:
 
 ## Tomcat进阶使用
 在idea中，默认配置的项目会在项目本地生成编译后的项目，在本例中我的本地项目地址为D:/ideaspace/tomcatDemo，idea所生成的编译文件存放于D:\ideaspace\tomcatDemo\out\artifacts
-![6](/world/img/Tomcat/6.png)
+![6](/img/Tomcat/6.png)
 项目名正是上文中浏览器跳转的地址名，artifacts的作用是整合编译后的 java 文件，资源文件等，有不同的整合方式，比如war、jar、war exploded 等，其中 war 和 war exploded 区别就是后者不压缩，开发时选后者便于看到修改文件后的效果。
 
 在实际的开发中，开发者一般不会把编译后的项目放在本地项目中而是采用以下几种方式：
@@ -153,7 +153,7 @@ Context 元素代表在特定虚拟主机上运行的一个Web 应用。每个We
 
 自动部署的含义是在Tomcat服务启动之后通过不重启Tomcat的方式进行部署web应用，而静态部署则需要重启Tomcat服务。
 在我们最开始获取Tomcat安装目录时，在webapps下有着如下的几个文件：
-![7](/world/img/Tomcat/7.png)
+![7](/img/Tomcat/7.png)
 事实上我们并未使用context标签去部署这些服务，但是在Tomcat启动时这些服务就会跟着一起启动，这是因为Tomcat会扫描webapps下所有服务。
 我们只需要在Host标签中将autoDeploy设置为true即可开启自动部署，这样Tomcat将会定期自动扫描webapps检查是否有新增服务，从而实现自动部署。
 其中，Host元素的appBase和xmlBase设置了检查Web应用更新的目录，appBase属性指定Web应用所在的目录，默认值是webapps，这是一个相对路径，代表Tomcat根目录下webapps文件夹。
