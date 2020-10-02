@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tomcat从放弃到入门 - Octavia</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Tomcat认识当我们初次接触web项目时，很可能会有这样的疑问：程序的入口在哪里？在我们编写应用程序时都会有主函数（main方法）用于启动应用，这也被称为应用程序的主入口。而在web项目中并没有这,"> 
+    <meta name="author" content="Octavia"> 
+    <link rel="alternative" href="atom.xml" title="Octavia" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Octavia</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://octavia-code.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Tomcat从放弃到入门</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Tomcat从放弃到入门</h1>
+        <div class="stuff">
+            <span>九月 17, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%94%BE%E5%BC%83%E5%88%B0%E5%85%A5%E9%97%A8/" rel="tag">放弃到入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="Tomcat认识"><a href="#Tomcat认识" class="headerlink" title="Tomcat认识"></a>Tomcat认识</h2><p>当我们初次接触web项目时，很可能会有这样的疑问：<br>程序的入口在哪里？<br>在我们编写应用程序时都会有主函数（main方法）用于启动应用，这也被称为应用程序的主入口。<br>而在web项目中并没有这样的主函数，开发者也无法直接执行web应用，所以我们需要用到服务器，将项目发布到服务器上，从而运行项目。<br>简而言之，Tomcat就是一个解析请求并返回数据的容器。</p>
+<h2 id="Tomcat初步使用"><a href="#Tomcat初步使用" class="headerlink" title="Tomcat初步使用"></a>Tomcat初步使用</h2><p>以在Idea中使用Tomcat为例<br>第一步：新建一个web项目<br><img src="/img/Tomcat/1.png" alt="1"><br>第二步：配置Tomcat 地址选择本地存放目录<br><img src="/img/Tomcat/2.png" alt="2"><br>第三步：为项目命名<br><img src="/img/Tomcat/3.png" alt="3"><br>项目加载完毕后会自动生成一个index.jsp范例，运行Tomcat<br><img src="/img/Tomcat/4.png" alt="4"><br>正常情况下应该运行成功，浏览器跳转 <a target="_blank" rel="noopener" href="http://localhost:8080/tomcatDemo_war_exploded/">http://localhost:8080/tomcatDemo_war_exploded/</a> 正常显示页面.</p>
+<h3 id="解决控制台输出乱码问题"><a href="#解决控制台输出乱码问题" class="headerlink" title="解决控制台输出乱码问题"></a>解决控制台输出乱码问题</h3><p>首先打开vm option<br><img src="/img/Tomcat/5.png" alt="5"><br>在末尾添加<br><code>-Dfile.encoding=UTF-8</code><br>同时要确保settings=&gt;File Encoding中字符编码格式为UTF-8<br>重启idea即可</p>
+<h2 id="Tomcat进阶使用"><a href="#Tomcat进阶使用" class="headerlink" title="Tomcat进阶使用"></a>Tomcat进阶使用</h2><p>在idea中，默认配置的项目会在项目本地生成编译后的项目，在本例中我的本地项目地址为D:/ideaspace/tomcatDemo，idea所生成的编译文件存放于D:\ideaspace\tomcatDemo\out\artifacts<br><img src="/img/Tomcat/6.png" alt="6"><br>项目名正是上文中浏览器跳转的地址名，artifacts的作用是整合编译后的 java 文件，资源文件等，有不同的整合方式，比如war、jar、war exploded 等，其中 war 和 war exploded 区别就是后者不压缩，开发时选后者便于看到修改文件后的效果。</p>
+<p>在实际的开发中，开发者一般不会把编译后的项目放在本地项目中而是采用以下几种方式：<br>1.将构建完成后的项目放到%TOMCAT_HOME%/webapps 下，在启动tomcat时会自动启动webapps文件夹下的所有项目。<br>2.配置虚拟路径，打开%TOMCAT_HOME%/config/server.xml，在<br><code>&lt;Host name=&quot;localhost&quot; appBase=&quot;webapps&quot; unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;</code>下新增<br><code>&lt;Context docBase=&quot;D:\xx\xx&quot; path=&quot;/xxx&quot;&gt;&lt;/Context&gt;</code>，保存。<br>D:\xx\xx就是文件存放目录，\xxx及虚拟路径，此时在地址栏中输入<code>http://localhost:8080/xxx</code>即可访问服务。<br>3.在%TOMCAT_HOME%/conf/Catalina/localhost下新建xml文件，文件名自定义，文件内容如下<br><code>&lt;Context path=&quot;/hello&quot; docBase=&quot;D:/ideaspace/tomcatDemo&quot; debug=&quot;0&quot; privileged=&quot;true&quot;&gt;&lt;/Context&gt;</code><br>docBase后填写项目地址。</p>
+<h3 id="Tomcat启动方式"><a href="#Tomcat启动方式" class="headerlink" title="Tomcat启动方式"></a>Tomcat启动方式</h3><p>启动Tomcat除了借助开发工具外还可以藉由%TOMCAT_HOME%/bin/startup.bat这一批处理文件来启动。<br>启动前需要配置环境变量CATALINA_HOME与CATALINA_BASE，全部指向本地存放Tomcat文件目录，例如E:\apache-tomcat-9.0.38。<br>Cataline脚本用于启动和关闭Tomcat服务，是整个Tomcat服务中最为关键的脚本.Catalina是太平洋中靠近洛杉矶的一个小岛，因为其风景秀丽而著，曾被评为全美最漂亮的小岛。<br>除此之外还需在文件头加上JAVA和TOMCAT环境变量配置，展开bat文件，加入<br><code>SET JAVA_HOME=D:\Java\JavaSE1.8\jdk1.8.0_144</code><br><code>SET TOMCAT_HOME=E:\apache-tomcat-9.0.38</code></p>
+<p>启动批处理文件后，webapps文件夹下的所有项目都将启动，这种方式也是部署的常用方式。</p>
+<h2 id="Tomcat配置详解"><a href="#Tomcat配置详解" class="headerlink" title="Tomcat配置详解"></a>Tomcat配置详解</h2><p>server.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server port&#x3D;&quot;8005&quot; shutdown&#x3D;&quot;SHUTDOWN&quot;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.startup.VersionLoggerListener&quot; &#x2F;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine&#x3D;&quot;on&quot; &#x2F;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.core.JasperListener&quot; &#x2F;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; &#x2F;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; &#x2F;&gt;</span><br><span class="line">  &lt;Listener className&#x3D;&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;GlobalNamingResources&gt;</span><br><span class="line">    &lt;Resource name&#x3D;&quot;UserDatabase&quot; auth&#x3D;&quot;Container&quot;</span><br><span class="line">              type&#x3D;&quot;org.apache.catalina.UserDatabase&quot;</span><br><span class="line">              description&#x3D;&quot;User database that can be updated and saved&quot;</span><br><span class="line">              factory&#x3D;&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;</span><br><span class="line">              pathname&#x3D;&quot;conf&#x2F;tomcat-users.xml&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;GlobalNamingResources&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Service name&#x3D;&quot;Catalina&quot;&gt;</span><br><span class="line">    &lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot;</span><br><span class="line">               connectionTimeout&#x3D;&quot;20000&quot;</span><br><span class="line">               redirectPort&#x3D;&quot;8443&quot; &#x2F;&gt;</span><br><span class="line">    &lt;Connector port&#x3D;&quot;8009&quot; protocol&#x3D;&quot;AJP&#x2F;1.3&quot; redirectPort&#x3D;&quot;8443&quot; &#x2F;&gt;</span><br><span class="line">    &lt;Engine name&#x3D;&quot;Catalina&quot; defaultHost&#x3D;&quot;localhost&quot;&gt;</span><br><span class="line">      &lt;Realm className&#x3D;&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;</span><br><span class="line">        &lt;Realm className&#x3D;&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;</span><br><span class="line">               resourceName&#x3D;&quot;UserDatabase&quot;&#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;Realm&gt;</span><br><span class="line"></span><br><span class="line">      &lt;Host name&#x3D;&quot;localhost&quot;  appBase&#x3D;&quot;webapps&quot;</span><br><span class="line">            unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br><span class="line">        &lt;Valve className&#x3D;&quot;org.apache.catalina.valves.AccessLogValve&quot; directory&#x3D;&quot;logs&quot;</span><br><span class="line">               prefix&#x3D;&quot;localhost_access_log.&quot; suffix&#x3D;&quot;.txt&quot;</span><br><span class="line">               pattern&#x3D;&quot;%h %l %u %t &quot;%r&quot; %s %b&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;Host&gt;</span><br><span class="line">    &lt;&#x2F;Engine&gt;</span><br><span class="line">  &lt;&#x2F;Service&gt;</span><br><span class="line">&lt;&#x2F;Server&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>文件的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server&gt;</span><br><span class="line">    &lt;Service&gt;</span><br><span class="line">        &lt;Connector &#x2F;&gt;</span><br><span class="line">        &lt;Connector &#x2F;&gt;</span><br><span class="line">        &lt;Engine&gt;</span><br><span class="line">            &lt;Host&gt;</span><br><span class="line">                &lt;Context &#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;Host&gt;</span><br><span class="line">        &lt;&#x2F;Engine&gt;</span><br><span class="line">    &lt;&#x2F;Service&gt;</span><br><span class="line">&lt;&#x2F;Server&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Server、service与connector"><a href="#Server、service与connector" class="headerlink" title="Server、service与connector"></a>Server、service与connector</h3><p>Server元素在最顶层，代表整个Tomcat容器，一个 Server 元素中可以有一个或多个Service 元素。<br>一个Service可以包含多个Connector，但是只能包含一个Engine，Service在Connector和Engine外面包了一层，把它们组装在一起，对外提供服务。<br>Connector的主要功能是接收连接请求，创建Request和Response对象用于和请求端交换数据；然后分配线程让Engine来处理这个请求，并把产生的Request和Response对象传给Engine。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; connectionTimeout&#x3D;&quot;20000&quot; redirectPort&#x3D;&quot;8443&quot; &#x2F;&gt;</span><br><span class="line">&lt;Connector port&#x3D;&quot;8009&quot; protocol&#x3D;&quot;AJP&#x2F;1.3&quot; redirectPort&#x3D;&quot;8443&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>在上文第一个connector标签中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">port代表服请求服务的端口号</span><br><span class="line">protocol规定请求所履行的协议为HTTP&#x2F;1.1</span><br><span class="line">connectionTimeout代表连接超过20000ms即超时</span><br><span class="line">redirectPort代表当请求为https时重定向至端口8 443.</span><br></pre></td></tr></table></figure>
+<p>第二个connector标签中port是端口号，protocol规定请求所履行的协议为AJP/1.3，AJP协议负责和其他的HTTP服务器(如Apache)建立连接；在把Tomcat与其他HTTP服务器集成时，就需要用到这个连接器。之所以使用Tomcat和其他服务器集成，是因为Tomcat可以用作Servlet/JSP容器，但是对静态资源的处理速度较慢，不如Apache和IIS等HTTP服务器；因此常常将Tomcat与Apache等集成，前者作Servlet容器，后者处理静态资源，而AJP协议便负责Tomcat和Apache的连接。</p>
+<h3 id="engine、host与context"><a href="#engine、host与context" class="headerlink" title="engine、host与context"></a>engine、host与context</h3><p>engine组件在一个service中是唯一的，engine执行接收connector中传递的请求并将响应返回给connector的功能。<br>Host虚拟主机的作用，是运行多个Web应用（一个Context代表一个Web应用），并负责安装、展开、启动和结束每个Web应用。<br>上文中Host配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name&#x3D;&quot;localhost&quot; appBase&#x3D;&quot;webapps&quot; unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>name属性指定虚拟主机的主机名，一个Engine中有且仅有一个Host组件的name属性与Engine组件的defaultHost属性相匹配；一般情况下，主机名需要是在DNS服务器中注册的网络名，但是Engine指定的defaultHost不需要，因为默认主机是不需要在DNS服务器中注册的网络名，因为任何与所有Host名称不匹配的请求，都会路由至默认主机。<br>unpackWARs指定了是否将代表Web应用的WAR文件解压；如果为true，通过解压后的文件结构运行该Web应用，如果为false，直接使用WAR文件运行Web应用。<br>Host的autoDeploy和appBase属性，与Host内Web应用的自动部署有关.<br>Context 元素代表在特定虚拟主机上运行的一个Web 应用。每个Web应用基于WAR文件，或WAR文件解压后对应的目录（这里称为应用目录）。</p>
+<h2 id="Tomcat的自动部署、热加载与静态部署"><a href="#Tomcat的自动部署、热加载与静态部署" class="headerlink" title="Tomcat的自动部署、热加载与静态部署"></a>Tomcat的自动部署、热加载与静态部署</h2><h3 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h3><p>自动部署的含义是在Tomcat服务启动之后通过不重启Tomcat的方式进行部署web应用，而静态部署则需要重启Tomcat服务。<br>在我们最开始获取Tomcat安装目录时，在webapps下有着如下的几个文件：<br><img src="/img/Tomcat/7.png" alt="7"><br>事实上我们并未使用context标签去部署这些服务，但是在Tomcat启动时这些服务就会跟着一起启动，这是因为Tomcat会扫描webapps下所有服务。<br>我们只需要在Host标签中将autoDeploy设置为true即可开启自动部署，这样Tomcat将会定期自动扫描webapps检查是否有新增服务，从而实现自动部署。<br>其中，Host元素的appBase和xmlBase设置了检查Web应用更新的目录，appBase属性指定Web应用所在的目录，默认值是webapps，这是一个相对路径，代表Tomcat根目录下webapps文件夹。<br>xmlBase属性指定Web应用的XML配置文件所在的目录，默认值为conf//，例如第一部分的例子中，主机localhost的xmlBase的默认值是$TOMCAT_HOME/conf/Catalina/localhost。</p>
+<h3 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h3><p>热加载指当某个服务的.class文件发生改变时，Tomcat将会检测到并重新部署该web应用。<br>需要注意的是，热部署的发生场景在web服务发生改变，例如在webapps下新增web应用或者删除web应用都会触发热部署，而热加载是发生在某个应用服务内部，热加载可以理解为是热部署的一种实现。热部署的定义范围大于热加载。<br>热加载的实现方式：将context标签内的reloadable值设置为true即可。<br>还需注意的是，在开发环境Debug模式中中使用热加载可以方便开发，节约开发时间，而在生产环境中，热加载将会给服务器造成加大压力，损失服务器性能。</p>
+<h3 id="静态部署"><a href="#静态部署" class="headerlink" title="静态部署"></a>静态部署</h3><p>静态部署的实现方式：在Host标签内添加子标签Context，静态部署与动态部署可以共存，然而静态部署需要频繁的重启服务，因此并不提倡。</p>
+<h2 id="文章参考来源"><a href="#文章参考来源" class="headerlink" title="文章参考来源"></a>文章参考来源</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u_ascend/article/details/80433978#title1">tomcat 配置文件server.xml详解</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://www.0dutv.com/plug/down/up2.php/621323.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='https://link.hhtjim.com/163/31445554.mp3'></li>
+                        
+                    
+                        
+                            <li title='2' data-url='https://link.hhtjim.com/163/33920425.mp3'></li>
+                        
+                    
+                        
+                            <li title='3' data-url='https://www.0dutv.com/upload/dance/20200316/C719452E3C7834080007662021EA968E.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat%E8%AE%A4%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">Tomcat认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Tomcat初步使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">解决控制台输出乱码问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">Tomcat进阶使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tomcat%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">Tomcat启动方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">Tomcat配置详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server%E3%80%81service%E4%B8%8Econnector"><span class="toc-number">4.1.</span> <span class="toc-text">Server、service与connector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#engine%E3%80%81host%E4%B8%8Econtext"><span class="toc-number">4.2.</span> <span class="toc-text">engine、host与context</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat%E7%9A%84%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E5%8A%A0%E8%BD%BD%E4%B8%8E%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2"><span class="toc-number">5.</span> <span class="toc-text">Tomcat的自动部署、热加载与静态部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">5.1.</span> <span class="toc-text">自动部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.2.</span> <span class="toc-text">热加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2"><span class="toc-number">5.3.</span> <span class="toc-text">静态部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90"><span class="toc-number">6.</span> <span class="toc-text">文章参考来源</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/index.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
